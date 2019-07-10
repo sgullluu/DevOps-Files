@@ -1,0 +1,93 @@
+GIT
+
+1) git init
+
+2) git status
+
+3)git add < filename>
+
+4)git commit -m "commit message"
+
+5) git config --global user.name "sourabh"
+
+6) git config --global user.email sourabh@gmail.com
+
+7) git ls-files
+
+8) git log
+git log --oneline master/branchname
+
+9) git show < commit id>
+
+10) git commit -a -m "add and commit changes on old file " 
+
+11) git diff filename
+
+12) git diff --staged filename
+
+13) git rm --cached filename
+
+14) .gitignore
+
+15) git tag --a <tag name> <commit id> -m < commit message>
+
+16) git tag
+
+17) git revert commitid      35:00 min
+
+18) git branch               1:09:00 min
+
+19) git checkout -b <branchname>  <master or parent branch name>
+
+20) git checkout master 
+to go to the master branch
+
+21) git merge master/branchname
+
+you need to login to the one branch and then type this command.
+suppose you want to merge content of branch1 to master then login to master and enter command 
+
+git merge branch1
+it will copy content of branch1<source> to master < destination branch>.
+
+in simple word we need to be at destination branch and copy source branch.
+
+
+merge conflict:
+suppose master and branch1 has same file index4.html with different content.
+it will not allow to merge the file. we need to check the file and remove the conflict and then add commit the file.
+then it will allow to merge.
+
+22) git stash
+
+to save incomplte work or work in progress work in temp directory.
+so that your working directory is clean for commiting local repo.
+
+23)git stash list
+24) git show <stash number>
+
+25) git stash pop <stash number>
+
+to bring back file. ,stash is drop
+
+26) git stash apply <stashnumber>
+
+stash is not drop , u can use it again.
+
+
+27) rebasing     2:05:00 min
+
+
+========================================
+
+remote
+
+28) git remote add origin "repo URL"
+
+29) git push origin master/branchname
+
+30) git clone "repo URL"
+
+31) git pull origin
+
+32) git fetch origin

@@ -1,0 +1,14 @@
+GCP me instance banana hai
+YAML and Json  
+JSON
+LInux commands ;; Curl
+DOcker compose docker machine - docker files examples
+Ansible ,( asible palybooks)
+python scripting/powershell/PERL 
+httpd?
+nginix
+jboss
+python
+AI and ML
+VM
+VAGRANT

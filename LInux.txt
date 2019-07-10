@@ -1,0 +1,63 @@
+Linux
+
+LDAP 
+kron tab timer
+
+
+
+-----------linux commnds
+
+
+LS commands : - https://www.c-sharpcorner.com/article/list-files-and-directories-using-ls-command/
+ls / --> show content of root
+ls -a --> shows hidden files
+ls -l --> shows permison  also in top to bottom
+ls -t --> time 
+ls -h --> display file size in MB KB GB
+ls -F --> This command will mark all the executable files with * and list the directories with '/' character at the end.
+ls -1 --> This command will show single entry per line.
+ls -S --> This command sorts files/directories list by file size by using ls -S command
+8)
+
+
+
+1:22
+-------------------------------------------------------------------- 
+to check memory 
+ free 
+ top
+
+
+cler cache memory:
+
+sync; echo 1 > /proc/sys/vm/drop_caches
+
+------------------------------
+
+How to add new user in centos/redhat
+
+1) adduser username   < type new username>
+2) passwd username
+3) su - username     --> use to switch user
+4) 
+
+
+rpm -ivh https://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+
+DESCRIPTION. make The purpose of the make utility is to determine automatically which pieces of a large program need to be recompiled,
+ and issue the commands to recompile them. you can use make with any programming language whose compiler can be run with a shell command.
+
+
+naming 
+
+PS1=< name u wnt to give>
+
+yum instakk tree
+
+
+virtualization :virtualize hardware system in your computer.
+============================================================
+
+ sudo cat /etc/centos-release
+ sudo cat /proc/meminfo | grep Me
+ sudo cat /proc/cpuinfo | grep cpu

@@ -1,0 +1,38 @@
+how to create user
+
+global security --> authorization : project based , matrix based.
+
+how to install plugin in jenkins
+  1) Audit trial --used for keep log record of jenkins
+  2) Pmd plugins
+  3)pipeline plugins
+  4) junit test result
+  5) cobertra
+6) job config history plugins
+  7) deploy to container
+ 8) copy artifact.
+how to chnge port no of jenkins.
+
+Notification in jenkins
+ configure sysytem --> extended email notifiacation 
+
+Creating a pipleline
+
+master slave in jenkins.
+
+
+how to write POM.xml
+
+
+--------
+
+
+-------------------
+1) java
+1.5) wget
+2) git
+3) maven
+4) project lana bhi hai nd build project manully
+5) tomct instll 
+6)deploy project to tomcat
+7) GUI activate

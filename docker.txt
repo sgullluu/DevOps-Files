@@ -1,0 +1,186 @@
+
+
+------------------------------------------------
+
+Docker
+
+0) yum update -y
+1) yum install docker
+2) service docker start ///  sudo systemctl start docker
+3) docker --version
+4) docker images // docker images -a ( intermedite imge)
+5) docker run hello-world
+6) docker container ls / docker ps ( shows ony active conatner) / docker ps -a ( shows all continer)
+7) docker run --name firstcontainer hello-world.  ( --name flag)
+ 
+-----------------------------------------------
+pushing and pulling images form docker hub
+
+8) docker login
+9) docekr pull sgulhane/automation:v1
+10 docker push sgulhane/automation:v2
+11 docekr tag sgulhane/automation:v2 sgulhane/automation:v6
+----------------------------------------------------------------
+
+Modes in docker , start stop and del contner and images
+
+12 docker run -itd ubuntu  ( deattache mode running in backgroun)
+13 docker run -it ubuntu    ( enters the terminal)
+14 docker stop <container id>
+15 docker start <container id>
+16 docker attach <container id>
+17 docker rm < containerid /name>
+18 docker rm -f < conatinerid /name>
+19 docker rmi < image id/name>
+20 docker rmi -f < image id>
+21 docker run -it -h hostname ubuntu
+
+----------------------------------------------------------
+Volume data sharing
+
+22 docker run -it -v dataOnHost:/opt/DataOnContainer centos
+23 docker volume ls
+24 docker volume inspect DataOnHost
+25 docker run -it --name volcontainer -v dtaonhost :/opt/dtaoncontaner centos  --> mapping folder
+25 docker cp <container id>:/opt/file5.txt< sorce on continer > /opt <destination on host>  --> coying dta
+26 docekr cp /opt/file6.txt <container id>: /opt/file6.txt 
+
+---------------------------------------------------------------
+docker file commit and build
+
+27 docker commit ac34f863f078< continer id> sgulhane/automation:git2
+28 docker build -t dockerfile
+------------------------------------------------------------------
+port forwarding
+
+29 docker run -itd tomcat --> tomct service will be running on port 8080.
+  docker inspect < container id>
+
+30 docker run -itd -P ( free ports) tomcat  --> tomact service will run on contner as well as host ip adress,
+ check docker inspect < containerid > and see ip adress and port no. it will forward service to some random port on host. 
+ docker ps to see port no.
+
+
+31) docker run -itd -p ( binding port )  9999 ( host port no):8080( container port no) tomcat   . it will forwrd service to mention port on host.
+--------------------------------------------------------
+32 -36) converting images and continer into .tar  ( time 17:29)
+
+container --> .tar (export commnd)
+.tar --> container  (import command)
+
+imge --> .tar ( save coomand)
+.tar --> imge ( load commd)
+
+------------------------------------
+33) Docker files
+
+https://takacsmark.com/dockerfile-tutorial-by-example-dockerfile-best-practices-2018/#what-is-a-dockerfile-and-why-youd-want-to-use-one
+
+dangling images 
+
+if we build 2 imgaes form same docker file with same image name, old image  will lost his name and tag ,and new image
+will get the name and tag of the image. old imge is called dangaling image nd just hnging around.
+
+docker images --filter "dangling=true"
+
+-------------------------------------
+Registryy
+ 
+  docker pull registry:2
+  docker run -itd -p 9090:5000 registry:2
+  docker pull alpine
+  docker tag alpine localhost:9090/abc:v1
+  docker images
+  docker push localhost:9090/abc:v1
+  curl -i http://localhost:9090/
+  curl -i http://localhost:9090/v2/_catalog
+  localhost:9090/abc
+
+
+
+=-----------------------
+34) Docker machine
+it is used to create multiple Docker host containg docker conrtainer.
+
+
+
+
+-----------------
+35) Docker compose  ( not working)
+we can crete multiple continer in docker host using docker compose. we need python pip to be install for this.
+Pip is Python pckge manager.
+
+ yum install python-pip     -->insatlling python pip
+ pip install docker-compose   --> insatllling docekr compose through pip.
+ pip install --upgrade pip    --> upgrading python pip.
+ 
+
+mkdir docker-composrfile
+vim docker-compose.yml
+
+docker-compose up -d
+-----------------------------------------------------
+-------------------
+docker swarm  ( high availability, auto load balancing , scaling up)
+--------------
+docker swarm init --advertise-addr <ipaddress of manager>  --> to create a docker swrm cluster 
+
+ you will get  token to add worker . u need to copy nd paste token in worker machine.
+  to check token for worker:
+  
+docker swarm join-token worker
+ 
+ to check token for master
+ 
+docker swarm join-token master
+  
+  
+=================================
+docker prune ( used for clean up images ,container, volume , network , system , cache )
+
+check below video for more detials.
+ 
+https://www.youtube.com/watch?v=QruAkYHCFPE
+
+--------------------------
+docker service create -p 8080:8080 --name tomcat tomcat  ( , to create a container in cluster ,continer is called as service in cluster)
+
+docker node ls     --> check status of nodes ,list of all nodes in cluster ( to be run form master node only)
+
+docker service ls  ( to check running container on cluster , also about how many replicaas)
+
+docker service ps <service or continer nAME>    ( detils of services in which node it is runninf in cluster)
+---------------------------
+
+DRAIN AND ACTIVE
+
+docker node update --availability drain < node name or id>  ( we need to drain manager for 1st time)
+
+docker node update --availability  < node name or id>
+
+--------------------------------
+SCALE UP and down
+
+docker service scale < service name>=10
+
+docker service scale < service name>=8  ( it will reduce 2 service)
+
+docker service scale < service name>=12  ( it will increse 4 more service)
+
+--------------------------------
+How to remove services 
+
+docker service rm <service name>
+
+leave docker swarm
+
+docker swarm leave
+
+docker swarm leave --force
+
+======================================
+
+Networking in Docker 
+
+ --network= host  ( use this flag to run in specfic network)
+

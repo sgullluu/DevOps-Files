@@ -1,0 +1,45 @@
+
+		   
+----------------------------------------------------------------------------------------------------------------------------------------
+Pod.Yml
+
+apiVersion: V1         --> verison of kubernates
+kind: Pod              --> kind of deployement
+metadata:              --> information about the pod
+  name: MyFirstPod   --> name of the pad
+  labels:               --> identifers
+   zone: prod
+   version: v1
+spec:                  --> detils about what is inside the pod.
+  container:           --> inside pod we have conatiner
+  - name: samplecont ainer
+    image: sourabh/automation: v2   --> imges information
+    ports: 
+    - containerPort: 8080 
+------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
