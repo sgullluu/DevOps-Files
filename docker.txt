@@ -106,6 +106,8 @@ it is used to create multiple Docker host containg docker conrtainer.
 
 
 -----------------
+
+https://github.com/NaturalHistoryMuseum/scratchpads2/wiki/Install-Docker-and-Docker-Compose-(Centos-7)
 35) Docker compose  ( not working)
 we can crete multiple continer in docker host using docker compose. we need python pip to be install for this.
 Pip is Python pckge manager.

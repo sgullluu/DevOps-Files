@@ -1,0 +1,76 @@
+PERL 
+
+Practical Extraction and Reporting Language
+
+version -- > perl -v
+---------------------------------------------
+comments
+
+#single line commnet
+
+=begin
+multiple line commnets 
+multiple line commnets
+=cut
+
+__DATA__
+all are commnets below data
+
+------------------------------------------------
+First program 
+
+for windows dowld from strberry perl
+
+first program
+ #in windows we dont need to give she bang line
+ #in linux and unix perl comes by default
+ #in linux we need to give she bang line #!/usr/bin/perl
+ #semicoln at end for evry line
+ print "this is double inverted commas/n "; in double code special character has its meaning
+ print 'single inverted comma /n'; in single code special character loose its meaning and print as it is.
+ #save the file with .pl or .PL extension
+
+to execute type 
+perl filename.pl
+-----------------------------------------
+$age=10;
+print "age = $age";
+
+-----------------------
+
+$var=<<EOF;
+used in place of /n
+print multiple lines 
+this will print this 
+lines of code until 
+EOF
+print"$var";
+
+--------------------------
+
+we use \ to overwitre meaning of special character
+
+print (" it\'s a special day)
+
+it's a special day.
+
+---------------------------------
+
+no need to type data types in perl
+
+scalar -- satrt with $   
+example--> $name="sourabh";
+
+array - start with @
+example -->
+@array=(10,20.2,sourabh);
+
+hashes( key value pair) -- start with%
+example
+%my_hash={'location'=>'bangalore'}
+
+------------
+true flase --33:50 min
+-----------------------------------------
+video 1
+35:00

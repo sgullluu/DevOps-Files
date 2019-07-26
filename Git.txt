@@ -91,3 +91,5 @@ remote
 31) git pull origin
 
 32) git fetch origin
+
+33) Git LFS lets you store files up to 2 GB in size. Git LFS handles large files by storing references to the file in the repository, but not the actual file itself. To work around Git's architecture, Git LFS creates a pointer file which acts as a reference to the actual file (which is stored somewhere else).

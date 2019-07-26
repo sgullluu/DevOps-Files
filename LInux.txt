@@ -61,3 +61,16 @@ virtualization :virtualize hardware system in your computer.
  sudo cat /etc/centos-release
  sudo cat /proc/meminfo | grep Me
  sudo cat /proc/cpuinfo | grep cpu
+
+
+what is guid , suid and sticky bit?
+https://www.thegeekdiary.com/linux-interview-questions-special-permissions-suid-sgid-and-sticky-bit/
+
+what is hardlink and softlink in linux?
+
+https://linoxide.com/linux-how-to/difference-soft-link-hard-link/
+
+Inode
+https://tecadmin.net/what-is-inode-number-in-linux/
+
+https://linoxide.com/linux-command/linux-inode/

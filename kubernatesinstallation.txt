@@ -1,0 +1,128 @@
+Kubernates installation throught kubeadm method.
+====================================================================================================
+step1 ) prerequistes
+
+master 2vcpu -6gb ram
+worker1 1vcpu - 3gb ram
+worker2 1vcpu - 3gb ram 
+====================================================================================================
+step2) Disable
+
+*disable firewall
+*disable swaoff memory
+*disable selinix
+
+#Sudo Priviledges
+sudo su -
+----------------------------
+#Checking state of firewall:- 
+sudo firewall-cmd --state 
+
+#stopping the fire wall
+
+systemctl stop firewalld
+---------------------------
+#Disabling swapoff memory :- https://docs.platform9.com/support/disabling-swap-kubernetes-node/
+
+swapoff -a 
+sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
+----------------------
+#Disable SE linux  :- https://linuxize.com/post/how-to-disable-selinux-on-centos-7/
+
+#status of se linix
+sestatus
+setenforce 0
+set -i 's/enforcing/disabled/g' /etc/selinix/config
+=================================================================================================
+
+Step3:) Downaload and Install Docker | kubelet |kubeadm | kubectl
+https://www.howtoforge.com/tutorial/centos-kubernetes-docker-cluster/
+
+
+#to be executed on all nodes 
+
+#creating the repo file 
+-----------------------------
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+-------------------------------------
+#configuring repo for docker
+
+
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+--------------------------------------------
+#insatlling docker and kubernetes
+
+yum update -y
+yum install -y docker-ce kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+------------------------------------
+
+#starting docker and kubernetes services
+
+usermod -aG docker $(whoami)
+systemctl enable docker && systemctl start docker
+systemctl enable kubelet && systemctl start kubelet
+----------------------------------------
+
+cat  <<EOF > /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+
+sysctl net.bridge.bridge-nf-call-ip6tables=1
+sysctl net.ipv4.ip_forward=1
+sysctl --system
+echo "1" > /proc/sys/net/ipv4/ip_forward
+-------------------------
+#restarting services 
+
+systemctl daemon-reload
+systemctl restart kubelet
+=======================================================================================================
+STEP 4: Configuring kubernates master node.
+
+kubeadm init --apiserver-advertise-address=10.160.0.4 --pod-network-cidr=10.244.0.0/16
+
+MASTER ONLY
+kubeadm init --pod-network-cidr=10.244.0.0/16
+
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+NODES 
+JOIN command
+Then you can join any number of worker nodes by running the following on each as root:
+
+
+kubeadm join 10.160.0.4:6443 --token 6ye73m.38vedxl8h38a3jq3 \
+    --discovery-token-ca-cert-hash sha256:841b7c37006ab8c86fe986c54e750057ddefe8705929bfaf1ed093848b681443 
+=================================================================================
+warning.
+[init] Using Kubernetes version: v1.15.1
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions: 19.03.1. Latest validated version: 18.09
+
+=======================================================================
+flannel network pluggin insatll pod network
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+
+
+
