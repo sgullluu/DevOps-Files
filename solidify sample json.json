@@ -1,0 +1,465 @@
+{
+	"source-project": "SampleProject",
+	"target-project": "Sample",
+	"query": "project = EMP ORDER BY key ASC",
+	"workspace": "I:\\EMP",
+	"sprint-field": "Sprint",
+	"log-level": "Debug",
+	"attachment-folder": "Attachments",
+	"user-mapping-file": "users.txt",
+	"base-area-path": "",
+	"base-iteration-path": "",
+	"ignore-failed-links": true,
+
+	"link-map": {
+		"link": [
+
+			{
+				"source": "Relates",
+				"target": "System.LinkTypes.Related"
+			},
+			{
+				"source": "Parent",
+				"target": "System.LinkTypes.Hierarchy-Reverse"
+			},
+
+			{
+				"source": "Duplicate",
+				"target": "System.LinkTypes.Duplicate-Forward"
+			},
+
+			{
+				"source": "Cloners",
+				"target": "System.LinkTypes.Related"
+			},
+
+			{
+				"source": "Epic",
+				"target": "System.LinkTypes.Hierarchy-Reverse"
+			},
+			{
+				"source": "Blocks",
+				"target": "Microsoft.VSTS.Common.Affects-Reverse"
+			}
+		]
+	},
+	"type-map": {
+		"type": [
+
+			{
+				"source": "Bug",
+				"target": "Bug"
+			},
+			{
+				"source": "Defect",
+				"target": "Bug"
+			},
+			{
+				"source": "Issue",
+				"target": "Bug"
+			},
+
+			{
+				"source": "Epic",
+				"target": "Epic"
+			},
+			{
+				"source": "Sub-Epic",
+				"target": "Epic"
+			},
+			{
+				"source": "QA Sub Task",
+				"target": "Task"
+			},
+			{
+				"source": "QA Task",
+				"target": "Task"
+			},
+			{
+				"source": "Sub Task",
+				"target": "Task"
+			},
+			{
+				"source": "Task",
+				"target": "Task"
+			},
+			{
+				"source": "Sub-task",
+				"target": "Task"
+			},
+			{
+				"source": "Story",
+				"target": "User Story"
+			},
+			{
+				"source": "Decision",
+				"target": "User Story"
+			},
+			{
+				"source": "Dependency",
+				"target": "Task"
+			},
+			{
+				"source": "Development Story",
+				"target": "User Story"
+			},
+			{
+				"source": "Improvement",
+				"target": "User Story"
+			},
+			{
+				"source": "Product Backlog",
+				"target": "User Story"
+			},
+			{
+				"source": "Risk",
+				"target": "Task"
+			}
+		]
+	},
+
+
+
+
+	"field-map": {
+		"field": [
+
+
+			{
+				"source": "status",
+				"target": "System.State",
+				"for": "Task",
+				"mapping": {
+					"values": [{
+							"source": "Open",
+							"target": "Proposed"
+						},
+						{
+							"source": "In Progress",
+							"target": "In Progress"
+						},
+
+						{
+							"source": "Resolved",
+							"target": "In Progress"
+						},
+						{
+							"source": "Closed",
+							"target": "Completed"
+						},
+						{
+							"source": "Reopened",
+							"target": "Proposed"
+						},
+						{
+							"source": "Fail",
+							"target": "Completed"
+						},
+						{
+							"source": "Pass",
+							"target": "Completed"
+						}
+					]
+				}
+			},
+
+
+			{
+				"source": "status",
+				"target": "System.State",
+				"for": "User Story",
+				"mapping": {
+					"values": [{
+							"source": "Open",
+							"target": "Proposed"
+						},
+						{
+							"source": "In Progress",
+							"target": "In Progress"
+						},
+						{
+							"source": "Resolved",
+							"target": "In Progress"
+						},
+						{
+							"source": "Closed",
+							"target": "Completed"
+						},
+						{
+							"source": "Reopened",
+							"target": "Proposed"
+						},
+						{
+							"source": "Acceptance Ready",
+							"target": "In Progress"
+						},
+						{
+							"source": "Scheduled",
+							"target": "In Progress"
+						},
+						{
+							"source": "Dev Resolved",
+							"target": "In Progress"
+						},
+						{
+							"source": "CF Test",
+							"target": "In Progress"
+						},
+						{
+							"source": "On Hold",
+							"target": "Proposed"
+						}
+					]
+				}
+			},
+			{
+				"source": "status",
+				"target": "System.State",
+				"for": "Epic",
+				"mapping": {
+					"values": [{
+							"source": "Open",
+							"target": "Proposed"
+						},
+						{
+							"source": "In Progress",
+							"target": "In Progress"
+						},
+
+						{
+							"source": "Resolved",
+							"target": "In Progress"
+						},
+						{
+							"source": "Closed",
+							"target": "Completed"
+						},
+						{
+							"source": "Reopened",
+							"target": "Proposed"
+						}
+					]
+				}
+			},
+
+			{
+				"source": "status",
+				"target": "System.State",
+				"for": "Bug",
+				"mapping": {
+					"values": [{
+							"source": "Open",
+							"target": "Active"
+						},
+						{
+							"source": "In Progress",
+							"target": "Active"
+						},
+						{
+							"source": "Resolved",
+							"target": "Resolved"
+						},
+						{
+							"source": "Closed",
+							"target": "Closed"
+						},
+						{
+							"source": "Reopened",
+							"target": "Active"
+						},
+						{
+							"source": "Acceptance Ready",
+							"target": "Active"
+						},
+						{
+							"source": "Scheduled",
+							"target": "Active"
+						},
+						{
+							"source": "Dev Resolved",
+							"target": "Resolved"
+						},
+						{
+							"source": "Team Test",
+							"target": "Resolved"
+						},
+						{
+							"source": "QA",
+							"target": "Resolved"
+						},
+						{
+							"source": "Change Request",
+							"target": "Active"
+						},
+						{
+							"source": "Rejected",
+							"target": "Closed"
+						},
+						{
+							"source": "On Hold",
+							"target": "Active"
+						}
+					]
+				}
+			},
+			
+
+			{
+				"source": "summary",
+				"target": "System.Title",
+				"mapper": "MapTitle"
+			},
+			{
+				"source": "assignee",
+				"target": "System.AssignedTo",
+				"mapper": "MapUser"
+			},
+			{
+				"source": "description",
+				"target": "System.Description"				
+			},
+			{
+				"source": "comment",
+				"target": "System.History"				
+			},
+
+			{
+				"source": "Sprint",
+				"source-type": "name",
+				"target": "Sytem.IterationPath",
+				"mapper": "MapSprint"
+			},
+			{
+				"source": "labels",
+				"target": "System.Tags",
+				"mapper": "MapTags"
+			},
+
+			{
+				"source": "priority",
+				"target": "Microsoft.VSTS.Common.Priority",
+				"mapping": {
+					"values": [{
+							"source": "Blocker",
+							"target": "2"
+						},
+						{
+							"source": "Critical",
+							"target": "1"
+						},
+						{
+							"source": "Major",
+							"target": "3"
+						},
+
+						{
+							"source": "Minor",
+							"target": "4"
+						},
+						{
+							"source": "Trivial",
+							"target": "4"
+						},
+						{
+							"source": "None",
+							"target": "4"
+						},
+						{
+							"source": "Uncategorized",
+							"target": "4"
+						}
+					]
+				}
+			},
+
+			{
+				"source": "customfield_11505",
+				"target": "Jio.Common.AcceptanceCriteria"
+			},
+			{
+				"source": "customfield_11501",
+				"target": "Jio.Common.Category"
+			},
+			{
+				"source": "components",
+				"target": "Jio.Common.Components"
+			},
+			{
+				"source": "customfield_11722",
+				"target": "Jio.Common.Mitigation"
+			},
+			{
+				"source": "customfield_11723",
+				"target": "Jio.Common.Impact"
+			},
+			{
+				"source": "Original Estimate",
+				"source-type": "name",
+				"target": "Microsoft.VSTS.Scheduling.OriginalEstimate",
+				"mapper": "MapRemainingWork"
+			},
+			{
+				"source": "Remaining Estimate",
+				"source-type": "name",
+				"target": "Microsoft.VSTS.Scheduling.RemainingWork",
+				"mapper": "MapRemainingWork"
+			},
+			{
+				"source": "duedate",
+				"target": "Microsoft.DevDiv.DDate"
+			},
+			{
+				"source": "Time Spent",
+				"source-type": "name",
+				"target": "Microsoft.VSTS.Scheduling.CompletedWork",
+				"mapper": "MapRemainingWork"
+
+			},
+			{
+				"source": "customfield_11719",
+				"target": "Jio.Common.DependencyType"
+			},
+			{
+				"source": "customfield_10106",
+				"target": "Microsoft.VSTS.Scheduling.StoryPoints"
+			},
+			{
+				"source": "customfield_11718",
+				"target": "Jio.Common.AssignedToTeam"
+			},
+			{
+				"source": "customfield_11721",
+				"target": "Jio.Common.TestPhase"
+			},
+			{
+				"source": "customfield_11720",
+				"target": "Jio.Common.TestEnvironment",
+				"mapper": "MapUser"
+			},
+			{
+				"source": "versions",
+				"target": "Jio.Common.AffectsVersions"
+			},
+			{
+				"source": "fixVersions",
+				"target": "Jio.Common.FixVersions"
+			},
+			{
+				"source": "customfield_10106",
+				"target": "Jio.Common.Version"
+			},
+			{
+				"source": "customfield_11013",
+				"target": "Jio.Common.ExternalIssueID"
+			},
+			{
+				"source": "customfield_13250",
+				"target": "Jio.Common.testlist"
+			},
+			{
+				"source": "status",
+				"target": "Jio.Common.SubState"
+			}
+		]
+	}
+}
