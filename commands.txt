@@ -1,0 +1,43 @@
+
+========================================================================================================================================================================================
+Witdmin commands
+
+path: C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer
+========================================================================================================================================================================================
+
+witadmin exportwitd /collection:http://10.141.54.109/TestCollection /p:"DemoJira" /n:"Epic" /f:"C:\Users\sourabh.gulhane\Documents\Witadmin\Epic.xml"
+
+witadmin importwitd /collection:http://10.141.54.109/TestCollection /p:"DemoJira" /f:"C:\Users\sourabh.gulhane\Documents\Witadmin\Epic.xml"
+
+witadmin renamewitd /collection:http://10.141.54.109/JioPlatforms /p:"JioCloudSDK" /n:"Product Backlog Item" /new:"Tech Ticket"
+
+witadmin exportprocessconfig /collection:https://devops.jio.com/JioPlatforms /p:"Tej"  /f:C:\Users\Balaji.Sriramdas\Desktop\Customization\Tej\Processconfig.xml
+
+witadmin importprocessconfig /collection:https://devops.jio.com/JioPlatforms /p:"Tej"  /f:C:\Users\Balaji.Sriramdas\Desktop\Customization\Tej\Processconfig.xml
+
+witadmin exportcategories /collection:https://devops.jio.com/JioPlatforms  /p:"Tej" /f:C:\Users\Balaji.Sriramdas\Desktop\Customization\Tej\Categories.xml
+  
+witadmin importcategories /collection:https://devops.jio.com/JioPlatforms  /p:"Tej" /f:C:\Users\Balaji.Sriramdas\Desktop\Customization\Tej\Categories.xml
+
+witadmin destroywitd /collection:CollectionURL /p:Project /n:TypeName [/noprompt]
+
+========================================================================================================================================================================================
+Solidify Commands
+
+link :-https://github.com/solidify/jira-azuredevops-migrator/releases
+========================================================================================================================================================================================
+
+
+
+jira-export -u Sourabh.Gulhane -p xmas@2019 --url https://jira.jio.com/ --config Helthhub.json --force 
+
+
+wi-import --token n6dunfnsmzmpzk56onuehssazqucwdepdnkf6iaa7wdxmd2yktkq  --url https://devops.jio.com/JioPlatforms --config Helthhub.json. --force
+
+========================================================================================================================================================================================
+
+VSTS migrator
+link :- https://github.com/nkdAgility/azure-devops-migration-tools/releases
+========================================================================================================================================================================================
+ migration.exe  execute --config NewCommerce.json
+
