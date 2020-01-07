@@ -1,0 +1,55 @@
+{
+	"Version": "8.6",
+	"TelemetryEnableTrace": false,
+	"workaroundForQuerySOAPBugEnabled": false,
+	
+	"Source": {
+		"Collection": "https://devops.jio.com/JioFinancialServices/",
+		"Project": "Coupons",
+		"ReflectedWorkItemIDFieldName": "TfsMigrationTool.ReflectedWorkItemId",
+		"AllowCrossProjectLinking": false
+	},
+	"Target": {
+		"Collection": "https://devops.jio.com/Retail/",
+		"Project": "NewCommerce",
+		"ReflectedWorkItemIDFieldName": "TfsMigrationTool.ReflectedWorkItemId",
+		"AllowCrossProjectLinking": false
+	},
+	
+"FieldMaps": [ ],	
+	
+	"WorkItemTypeDefinition": {
+		"sourceWorkItemTypeName": "targetWorkItemTypeName",
+		
+	},
+	"GitRepoMapping": null,
+	
+	"Processors": [{
+			"ObjectType": "VstsSyncMigrator.Engine.Configuration.Processing.NodeStructuresMigrationConfig",
+			"PrefixProjectToNodes": true,
+			"Enabled": true,
+			"BasePaths": [	]
+		},
+		{
+			"ObjectType": "VstsSyncMigrator.Engine.Configuration.Processing.WorkItemMigrationConfig",
+			"ReplayRevisions": true,
+			"PrefixProjectToNodes": true,
+			"UpdateCreatedDate": true,
+			"UpdateCreatedBy": true,
+			"UpdateSourceReflectedId": true,
+			"BuildFieldTable": false,
+			"AppendMigrationToolSignatureFooter": false,
+			"QueryBit": " ",
+			"OrderBit": "[System.ChangedDate] desc",
+			"Enabled": true,
+			"LinkMigration": true,
+			"AttachmentMigration": true,
+			"AttachmentWorkingPath": "C:\\Jio Docs\\Azure\\AzuretoAzure\\Attachments1\\",
+			"FixHtmlAttachmentLinks": true,
+			"WorkItemCreateRetryLimit": 5,
+			"FilterWorkItemsThatAlreadyExistInTarget": true,
+			"PauseAfterEachWorkItem": false,
+			"AttachmentMazSize": 480000000
+		}
+	]
+}
