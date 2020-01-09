@@ -46,8 +46,10 @@ Volume data sharing
 22 docker run -it -v dataOnHost:/opt/DataOnContainer centos
 23 docker volume ls
 24 docker volume inspect DataOnHost
+path :- var/lib/docker/volumes/..
 25 docker run -it --name volcontainer -v dtaonhost :/opt/dtaoncontaner centos  --> mapping folder
 25 docker cp <container id>:/opt/file5.txt< sorce on continer > /opt <destination on host>  --> coying dta
+ docker cp < source from comtiner > <destination in host>
 26 docekr cp /opt/file6.txt <container id>: /opt/file6.txt 
 
 ---------------------------------------------------------------
@@ -55,6 +57,9 @@ docker file commit and build
 
 27 docker commit ac34f863f078< continer id> sgulhane/automation:git2
 28 docker build -t dockerfile
+
+docker history <image name>
+
 ------------------------------------------------------------------
 port forwarding
 
