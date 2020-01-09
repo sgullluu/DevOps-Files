@@ -84,6 +84,8 @@ imge --> .tar ( save coomand)
 ------------------------------------
 33) Docker files
 
+2:40:00 episode 7
+
 https://takacsmark.com/dockerfile-tutorial-by-example-dockerfile-best-practices-2018/#what-is-a-dockerfile-and-why-youd-want-to-use-one
 
 dangling images 
