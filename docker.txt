@@ -4,6 +4,8 @@
 
 Docker
 
+Docker Insatallation
+
 0) yum update -y
 1) yum install docker
 2) service docker start ///  sudo systemctl start docker
@@ -19,13 +21,16 @@ pushing and pulling images form docker hub
 8) docker login
 9) docekr pull sgulhane/automation:v1
 10 docker push sgulhane/automation:v2
-11 docekr tag sgulhane/automation:v2 sgulhane/automation:v6
+11 docekr tag sgulhane/automation:v2 sgulhane/automation:v6 (copy imge with new tag)
 ----------------------------------------------------------------
 
 Modes in docker , start stop and del contner and images
 
-12 docker run -itd ubuntu  ( deattache mode running in backgroun)
+12 docker run -itd ubuntu  ( deattache mode running in background)
 13 docker run -it ubuntu    ( enters the terminal)
+to come out of container
+1) exit --> stop the running container
+2) cltr+P ,cltr+Q --> comes out of continer but continer is running in background
 14 docker stop <container id>
 15 docker start <container id>
 16 docker attach <container id>
@@ -185,4 +190,9 @@ docker swarm leave --force
 Networking in Docker 
 
  --network= host  ( use this flag to run in specfic network)
+ ============================================================
+Flags in Docker 
+
+-- name --> name flag
+-a --> show all 
 
