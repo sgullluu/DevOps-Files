@@ -206,3 +206,7 @@ Flags in Docker
 -P --> port forwarding
 -p --> binding port
 
+===========================================
+
+docker exec -it <container_id_or_name> echo "I'm inside the container!"
+
