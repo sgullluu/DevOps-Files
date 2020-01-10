@@ -203,4 +203,6 @@ Flags in Docker
 -- name --> name flag
 -a --> show all 
 -h --> hostname
+-P --> port forwarding
+-p --> binding port
 
