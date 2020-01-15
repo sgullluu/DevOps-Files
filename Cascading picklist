@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "cascades": {
+    "Custom.Color": {
+      "Blue": {
+        "Custom.ColorLevel": [
+          "Dark Blue",
+          "Light Blue"
+        ]
+      },
+      "Red": {
+        "Custom.ColorLevel": [
+          "Dark Red",
+          "Light Red"
+        ]
+      }
+    },
+    "Custom.ColorLevel": {
+      "Dark Blue": {
+        "Custom.Number": [
+          "1",
+          "2"
+        ]
+      },
+      "Light Red": {
+        "Custom.Number": [
+          "3",
+          "4"
+        ]
+      },
+      "Light Blue": {
+        "Custom.Number": [
+          "5",
+          "6"
+        ]
+      },
+      "Dark Red": {
+        "Custom.Number": [
+          "7",
+          "8"
+        ]
+      }
+    },
+    "Custom.Number": {
+      "1": {
+        "Custom.ABC": [
+          "A",
+          "B"
+        ]
+      },
+      "2": {
+        "Custom.ABC": [
+          "C",
+          "B"
+        ]
+      },
+      "3": {
+        "Custom.ABC": [
+          "A",
+          "B"
+        ]
+      },
+      "4": {
+        "Custom.ABC": [
+          "A",
+          "D"
+        ]
+      },
+      "5": {
+        "Custom.ABC": [
+          "C",
+          "D"
+        ]
+      },
+      "6": {
+        "Custom.ABC": [
+          "D",
+          "B"
+        ]
+      },
+      "7": {
+        "Custom.ABC": [
+          "C",
+          "A"
+        ]
+      },
+      "8": {
+        "Custom.ABC": [
+          "A",
+          "B",
+          "D",
+          "C"
+        ]
+      }
+    }
+  }
+}
