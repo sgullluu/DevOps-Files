@@ -1,10 +1,145 @@
 KUBERNATES
-==============================================================================================================================
+https://www.youtube.com/watch?v=6uvHVVNq34w&list=PLMPZQTftRCS8Pp4wiiUruly5ODScvAwcQ&index=18
 
-1) kubectl create -f pod.yml 
+Kubectl syntaz
+
+kubectl [command] [resource type] [resource name] [flag]
+==============================================================================================================================
+Flags
+-f 
+-o : output
+-l : label
+-c : container name
+
+
+---------------------------------------------------------
+kubectl create -f pod.yml 
+Kubectl create -f < directoty name>
+--------------------------------------------------------
+Kubectl get [resource type] [Name] [flag]
+
+kubectl get pods 
+this will display high level infomation about the pods
+--------------------------------------------------------
+Kubectl describe [type] [name] -- display complete information  1 or more resources.
+
+kubectl describe pods
+
+kubectl describe pods <pod-name>
+kubectl describe node <node-name>
+---------------------------------------------------------------
+kubectl delete pods <pod name>
+
+kubectl delete pods,servcie -l name=<labelname>
+
+-l flag is for Label
+
+kubectl delete pods -all 
+
+it will delete all the pods
+---------------------------------------------------------------
+Kubectl exec --> execute a command against a container inside a pod
+
+kubectl exec <pod-name> date   ( when there is one container inside a pod)
+kubectl exec <pod-name> -c <conatainer name > date  ( when there is more than one conatainer in pod)
+
+kubectl exec <pod-name> -it <pod-name> /bin/bash  ( to get inside container)
+
+------------------------------------------
+
+kubectl log pod-name
+
+kubectl log -f pod-name
+
+------------------------------------------
+PODS:-
+Continer inside pod share same IP address ,same volumes 
+
+all pods can communicate with each other
+
+Pod life cycle:-
+
+we write the mainfeast file and submit it to API server.
+it will create container using Mainfest file.
+it will be in pending state until all conatiners is created.
+once all conatiners are up and running it will go to running state.
+once its work its completed it go to successded state.
+if any failure happens it will go to failed state.
+-----------------------------------------------
+Pod Config 
+
+#nginix-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadta:
+  name: nginix
+  label: 
+    app: nginix
+    tier: dev
+spec:
+  container:
+  - name: nginix-container
+    image: nginix
+    
+    
+Command to excuete (youtube vdeio 21:00)
+
+1) kubectl create -f niginx-pod.ymal
 2) kubectl get pods
-3) kubectl describe pods
-4) kubectl delete pods <pod name>
+3) kubectl get pod -o wide ( show wide output or more option like Ipaddress , nOde)
+4) kubectl get pod nginix-pod -o yaml  ( it will give detail in yaml format)
+kubectl get pod nginix-pod -o yaml | more
+  
+5) kubectl decribe pod nginix-pod ( detailed output of nginx pod
+6) kubectl exec -it pod nginix-pod -- /bin/bash ( get inside continer)
+
+run some commnds
+hostname
+exit
+7) kubectl expose pod nginix-pod --type=NodePort --port:80   ( Port forwarding)
+   
+8)kubectl delete pod nginix-pod
+------------------------------------------
+
+Replication controller 
+
+It ensure specefic number ( mentioned in yaml file) of pods are always running. If there excess pods it gets killed and vice versa.
+
+Replication COntroller and Pods are assosciated with Labels
+
+Advantages :
+ High availability
+ Load balaancing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======================================================
 5) kubectl get deploy
 6) kubectl describe deploy
 7) kubectl get rs
@@ -23,7 +158,7 @@ deployment object
  service object
 ====================================================================================================================================
 
-
+Kubernates architecture
 
 Kubernates master
  1)managing each operatiion and node. 
