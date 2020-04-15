@@ -10,7 +10,8 @@ Flags
 -o : output
 -l : label
 -c : container name
-
+-record : recird the command in history
+s
 
 ---------------------------------------------------------
 kubectl create -f pod.yml 
@@ -113,18 +114,138 @@ Advantages :
  Load balaancing
 
 
+-------------------------------------------------------------------------------------
+
+Deployement 
+
+Features 
+
+Multiple replicas
+upgrade
+rollback
+scale up or down
+pause and resume
 
 
+Deployement types
+
+1) Recreate :- its is a dummy deployemnt process. in this we will first shutdown version A and once version A is shutdown,
+then we will deploy version B. while switching from versio A to version B there will be a down time of server
+
+2) Rolling update:- in this , it will slowly update the version of the app by replacing instances one after the other until
+all instances are succesfully rolled out
+ default stragey , easy to use but take some time.
+
+3)Canary deployemnt:- it is gradually shifting form vesion A to Verion B
+
+4) Blue/green deployemnt:-  here blue means version A and Green means Verison B. we will create exact same no of version B instance
+and shify the traffic to version B form version A.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Deployment mainfest file.
+#niginix-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadta:
+  name: nginix-deploy
+  label: 
+    app: nginix-app
+    
+spec:
+  replica: 3
+  
+  selector:
+    matchLabels: nginix-app
+  
+  template:
+    metadata:
+       label:
+         app: niginix-app
+    spec:
+      container:
+      - name: nginix-container
+        image: nginix
+	port:
+	- containerPort: 80
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Commands:
+1 kubectl create -f niginix-deploy.yaml
+
+2) kubectl get deploy -l app=niginix-app
+
+3) kubectl get rs -l app=niginix-app  ( dispaly replica set)
+
+4) kubectl get pods -l app=niginix-app
+
+5) kubectl describe deploy nginix-deployemnt
+
+------update Deployemnt----------------
+
+there are two ways to update it 
+1)  SET command
+
+kubectl set image deploy nginx deployement ngnix-conatiner=nginix:1.9.1
+
+2)  edit command
+kubectl edit deploy nginx-deployement
+
+in this configuration will open in Vi editor , make the changes and close it, configuraton will save automatically
 
 
+check the status using 
+
+kuebctl rollout status deployemnt/nginx-deployment
+
+kubectl get deploy 
 
 
+------ RollBack Deployemnt-------------------------
+
+suppose if we gave the wrong version number as 1.9.1 as 1.91 then 
+
+1) kubectl set image deploy nginx deployement ngnix-conatiner=nginix:1.91 --record
+
+record will record this command in history
+
+once the command is run output shows that image is updated.
+
+2)kubectl rollout status deployemnt/nginx-deployment
+
+but when you check the statuus it will show that it is stuck or waiting for somethibg
+
+3) kubectl rollout history deployemnt/nginx-deployemnt
+
+to check which commandwe have executed earlier
+
+we will notice that incorrect version number. to undo this deployment will execute below command
+
+4) kubectl rollout undo deployment/nginix-deployment
+
+now again you can check the status
+5)kubectl rollout status deployemnt/nginx-deployment
 
 
+Scale Up and Scale Down 
+
+1) kubectl scale deployment nginix-deployment --replicas=5
+
+it will scale deployment form 3 to 5
+
+2) kubectl get deploy
+3) kubectl het pods
 
 
+4)  kubectl scale deployment nginix-deployment --replicas=2
+
+it will scale deployment form 5 to 2
 
 
+Delete
+
+Kubectl delete -g nginx-deploy.yaml
 
 
 
