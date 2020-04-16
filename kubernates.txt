@@ -66,6 +66,8 @@ it will be in pending state until all conatiners is created.
 once all conatiners are up and running it will go to running state.
 once its work its completed it go to successded state.
 if any failure happens it will go to failed state.
+
+Not ready and Unkown state.
 -----------------------------------------------
 Pod Config 
 
@@ -112,7 +114,62 @@ Replication COntroller and Pods are assosciated with Labels
 Advantages :
  High availability
  Load balaancing
+ 
+ Mainfest file:-
+ #niginx-rc.yaml
+ appVersion: v1
+ kind: ReplicationController
+ metadata:
+   name:nginix-rc
+ spec:
+   replicas: 3
+   selector:
+     app: nginix-pod
+   template:
+     metadata:
+       labels: 
+         app: nginix-pod
+     spec:
+       containers:
+       - name: nginx-container
+         image: nginx
+	 ports:
+	 - conatinerPort: 80
+	 
+Command to excuete 	   
+1) kubectl create -f niginx-rc.ymal
+2) kubectl get pods
+3) kubectl get pod -l app:nginx-pod
+ 
+4) kubectl decribe rc nginix-rc 
+5) kubectl get pod -o wide
 
+we can check one pod is running on node 2. we will manually turnoff the node 2 and check the status
+
+pod will go to not ready state.
+
+
+6) kubectl get nodes
+
+after some time again check the status wuth wide output option
+we will see that status of pod on node 2 become unkown ann new  pod is runnuing on Node 1
+
+Scale up and down
+
+7 kubectl scale  rc niginix-rd --replicas=5
+8 kubectl scale  rc niginix-rd --replicas=2
+
+kubectl get rc niginx-rd
+
+kubectl get pods
+
+DELETE
+
+kubectl delete -f nigin.rc.yaml
+
+kubectl get rc
+
+kubectl get pods
 
 -------------------------------------------------------------------------------------
 
