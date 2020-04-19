@@ -75,15 +75,15 @@ Pod Config
 
 apiVersion: v1
 kind: Pod
-metadta:
-  name: nginix
-  label: 
-    app: nginix
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx-label
     tier: dev
 spec:
-  container:
-  - name: nginix-container
-    image: nginix
+  containers:
+    - name: nginx-conatiner
+      image: nginx
     
     
 Command to excuete (youtube vdeio 21:00)
@@ -117,24 +117,27 @@ Advantages :
  
  Mainfest file:-
  #niginx-rc.yaml
- appVersion: v1
- kind: ReplicationController
- metadata:
-   name:nginix-rc
- spec:
-   replicas: 3
-   selector:
-     app: nginix-pod
-   template:
-     metadata:
-       labels: 
-         app: nginix-pod
-     spec:
-       containers:
-       - name: nginx-container
-         image: nginx
-	 ports:
-	 - conatinerPort: 80
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-contr
+
+spec:
+  replicas: 3
+  selector:
+    app: nginx-app
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: nginx-cont
+        image: nginx
+        ports:
+        - containerPort: 80
 	 
 Command to excuete 	   
 1) kubectl create -f niginx-rc.ymal
