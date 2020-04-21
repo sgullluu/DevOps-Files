@@ -142,7 +142,7 @@ spec:
 Command to excuete 	   
 1) kubectl create -f niginx-rc.ymal
 2) kubectl get pods
-3) kubectl get pod -l app:nginx-pod
+3) kubectl get pod -l app:nginx-app  (search with label name)
  
 4) kubectl decribe rc nginix-rc 
 5) kubectl get pod -o wide
