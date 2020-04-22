@@ -309,7 +309,9 @@ and will do some testing if every thing is good we will upgrade 8 instances. and
 this is goood for testing.
 
 4) Blue/green deployemnt:-  here blue means version A and Green means Verison B. we will create exact same no of version B instance
-and shify the traffic to version B form version A.
+and test the instance , once it is tested we will change the traffic to Version B at load balancer level.
+
+advatage of this is instant update and rollback. 
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Deployment mainfest file.
