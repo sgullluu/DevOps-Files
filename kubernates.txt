@@ -284,6 +284,8 @@ kubectl scheduling , stop node 2 and check kubectl gets pod -o wide command to s
 -------------------------------------------------------------------------------------
 Deployement 
 
+deployemnts is all about updates and rollbacks.
+
 Features 
 
 Multiple replicas
@@ -302,7 +304,9 @@ then we will deploy version B. while switching from versio A to version B there 
 all instances are succesfully rolled out
  default stragey , easy to use but take some time.
 
-3)Canary deployemnt:- it is gradually shifting form vesion A to Verion B
+3)Canary deployemnt:- it is gradually (slowly) shifting form vesion A to Verion B. first will upgrade 2 instance out of 10 to verB
+and will do some testing if every thing is good we will upgrade 8 instances. and shutdown versionA.
+this is goood for testing.
 
 4) Blue/green deployemnt:-  here blue means version A and Green means Verison B. we will create exact same no of version B instance
 and shify the traffic to version B form version A.
@@ -426,12 +430,6 @@ Kubectl delete -g nginx-deploy.yaml
 
 
 
-=======================================================
-5) kubectl get deploy
-6) kubectl describe deploy
-7) kubectl get rs
-8) kubectl apply -f deploy.yml --record
-9) kubectl rollout status deployment sample-deploy
 ==================================================
 Horizontal scaling means that you scale by adding more machines
 into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM) to an existing machine.
