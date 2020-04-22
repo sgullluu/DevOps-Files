@@ -6,12 +6,13 @@ Kubectl syntaz
 kubectl [command] [resource type] [resource name] [flag]
 ==============================================================================================================================
 Flags
--f 
+-f : file
 -o : output
 -l : label
 -c : container name
 -record : recird the command in history
-s
+--replicas=5
+
 
 ---------------------------------------------------------
 kubectl create -f pod.yml 
@@ -114,7 +115,8 @@ Replication COntroller and Pods are assosciated with Labels
 Advantages :
  High availability
  Load balaancing
- 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  Mainfest file:-
  #niginx-rc.yaml
 ---
@@ -138,7 +140,8 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
-	 
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 Command to excuete 	   
 1) kubectl create -f niginx-rc.ymal
 2) kubectl get pods
@@ -175,7 +178,110 @@ kubectl get rc
 kubectl get pods
 
 -------------------------------------------------------------------------------------
+ReplicaSet
 
+Difference between RelicaSet and ReplicationController is that replicaset uses Set based selector where as
+replication controller select equity based selector.
+------------------------------------------
+Equality based Selctor have 3 operator:-  = == !=   ( equal. double equal , Not equal)
+example:-
+ environemnt=production
+ tier!=frontend 
+
+ Command line
+ 
+ kubectl get pods -l environemnt=production
+ 
+ Mianfiest file
+ 
+ selector:
+    environemnt=production
+    tier!=frontend 
+------------------------------------------
+Set Based Selector have 3 operator:- in notin  exist 
+Example
+ environemnt in (production,qa)
+ tier notin (frontend,backend)
+ 
+ in set based we can select more than one value.
+ 
+we selcting pods from set of actions and that is why it is called as set based selector.
+
+Supports:
+services and replication comtroller
+
+COmmand line 
+
+kubectl get pods -l environment in ( production ) 
+
+Mainfeast file:
+
+selector:
+  matchExpression:
+  - {key:environment,operator:in,value:[production]}
+  - {key:tier,operator:notin, value:[frontend,backend]}
+  or 
+  matchLabels:
+    app:environment
+  
+
+supports:
+ replica set, job , deployement,damon set.
+ 
+ -----------------------------------------------------
+ 
+ Two different types of selector:
+ 
+ selector :                        selector:
+   app:Enviroment                    matchLabel:
+                                       app:Environment
+Old resources
+Replication Controller	       New Resources like RelicaSet, Jobs,Dameon set
+services
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#nginx-rs.yaml
+
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx-app
+	tier: frontend
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+commands to execute:
+
+1) kubectl create -f nigini-rs.yaml
+2) kubectl get pods ( 3instances of pod is created)
+3)kubectl get pods -l tier:frontend ( serach pods with label if there are many pods runnung)
+4)kubectl get rs nginx-rs -o wide ( at wide optput you can see both selector is displaying)
+5)kubectl describe rs nginx-rs
+
+kubectl scheduling , stop node 2 and check kubectl gets pod -o wide command to see pod gets crested in another node.
+
+6) kubectl scale rs nginx-rs --replicas=5
+7) kubectl scale rs nginx-rs --replicas=1
+8) kubectl scale rs nginx-rs ( check desired and currect is same)
+9) kubectl delete -f nginx-rs.yaml
+10)kubectl get pods -l app:nginx-app
+-------------------------------------------------------------------------------------
 Deployement 
 
 Features 
