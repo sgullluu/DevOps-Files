@@ -294,6 +294,14 @@ rollback
 scale up or down
 pause and resume
 
+https://www.youtube.com/watch?v=mNK14yXIZF4&list=PLLasX02E8BPCrIhFrc_ZiINhbRkYMKdPT&index=5
+
+Liveness check ;-it define pod should automaticaly restarted
+readyness check;- it define wheather it is ready to serve
+termination grace period :- default 30 sec . it define how long container should be up and running after its been requested 
+for deletion.to actual deletion.
+
+
 
 Deployement types
 
