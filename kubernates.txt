@@ -1,5 +1,57 @@
+
 KUBERNATES
 https://www.youtube.com/watch?v=6uvHVVNq34w&list=PLMPZQTftRCS8Pp4wiiUruly5ODScvAwcQ&index=18
+
+Kubernates architecture
+
+Kubernates master
+ 1)managing each operatiion and node. 
+ 2) checking each node is healthy , pod is healthy ,scheduling deployemnet of pod , controlling replicas.
+  
+ 
+ 
+ -Master components:
+ 
+    -API server : API is used to make communication between two pod or two service in kubernates. to manage all this API's we 
+     have API server . it will manage communication between different component of KUBERNATES.
+
+     it isimp component in Kubernates cluster. it is front end component of Kubernates master. we define our cluster in yaml file.
+                    API server will validate that file and deploy continer to cluster.
+
+    -etcd : It is a place where you store your password. it is store data in form of key value pair. 
+ 
+    -Kube controller mnager :  handle all the controller that is present in kubernates.
+      node controller : it will check wheather a node is created , in progress or ready state.
+      replica controller : it will ensure that actual state is equal to desired state.
+
+     it is having many controller in cluster which will check wheather desired state of cluster is 
+     equal to actual state of cluster.if desired state is not equal to actual state . controller manager will run watch loop at 
+	 backend and bring desired stte equl to actual state.
+	  
+	  
+    -kube scheduler  : it will distribute the work load to nodes in kubernates cluster. example which job needs to run on which node.
+
+
+    -clould controller manager : making kubenates cluster avaiable to hardware of the cloud. it act as bridge between the 
+     aws hardware ( sevices how aws works ) and kubernates API ( how thwy will work).
+ 
+
+ 
+ -Kubernates Nodes 
+    
+	- Kubelet : it is major compont .it is kubernates agent on the node.it will interct with api server and deploy the contaner.
+	  it will take work load from kubernates master
+	
+	-Kubeproxy : it will see the newtwork aspect betwen user and container.it will check netwrk 
+	  connection betwee user and contaienr how they are expose to external world.
+	
+	-cAdvisor : container run time environment. which container we are using example DOcker , Rocket.
+	
+	- pod: very imp. continer will run inside pod. it will create runtime env for container. provide layer of abstarction.
+	       as standard we will run 1 container per pod. we can run many.
+    
+	-kubectl : its a way of acesing the cluster. it is a command line tool.
+
 
 Kubectl syntaz
 
@@ -242,10 +294,10 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 #nginx-rs.yaml
 
-apiVersion: v1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: nginx-rs
+  name: replica-set
 spec:
   replicas: 3
   selector:
@@ -256,13 +308,17 @@ spec:
       name: nginx-pod
       labels:
         app: nginx-app
-	tier: frontend
+        tier: dev
     spec:
-      containers:
-      - name: nginx-container
-        image: nginx
-        ports:
-        - containerPort: 80
+     containers:
+     - name: nginx-container
+       image: nginx
+       ports:
+       - containerPort: 80
+
+
+
+
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
@@ -270,7 +326,7 @@ commands to execute:
 
 1) kubectl create -f nigini-rs.yaml
 2) kubectl get pods ( 3instances of pod is created)
-3)kubectl get pods -l tier:frontend ( serach pods with label if there are many pods runnung)
+3)kubectl get pods -l tier ( serach pods with label if there are many pods runnung)
 4)kubectl get rs nginx-rs -o wide ( at wide optput you can see both selector is displaying)
 5)kubectl describe rs nginx-rs
 
@@ -453,54 +509,5 @@ deployment object
  service object
 ====================================================================================================================================
 
-Kubernates architecture
-
-Kubernates master
- 1)managing each operatiion and node. 
- 2) checking each node is healthy , pod is healthy ,scheduling deployemnet of pod , controlling replicas.
-  
- 
- 
- -Master components:
- 
-    -API server : API is used to make communication between two pod or two service in kubernates. to manage all this API's we 
-     have API server . it will manage communication between different component of KUBERNATES.
-
-     it isimp component in Kubernates cluster. it is front end component of Kubernates master. we define our cluster in yaml file.
-                    API server will validate that file and deploy continer to cluster.
-
-    -etcd : It is a place where you store your password. it is store data in form of key value pair. 
- 
-    -Kube controller mnager :  handle all the controller that is present in kubernates.
-      node controller : it will check wheather a node is created , in progress or ready state.
-      replica controller : it will ensure that actual state is equal to desired state.
-
-     it is having many controller in cluster which will check wheather desired state of cluster is 
-     equal to actual state of cluster.if desired state is not equal to actual state . controller manager will run watch loop at 
-	 backend and bring desired stte equl to actual state.
-	  
-	  
-    -kube scheduler  : it will distribute the work load to nodes in kubernates cluster. example which job needs to run on which node.
-
-
-    -clould controller manager : making kubenates cluster avaiable to hardware of the cloud. it act as bridge between the 
-     aws hardware ( sevices how aws works ) and kubernates API ( how thwy will work).
- 
-
- 
- -Kubernates Nodes 
-    
-	- Kubelet : it is major compont .it is kubernates agent on the node.it will interct with api server and deploy the contaner.
-	  it will take work load from kubernates master
-	
-	-Kubeproxy : it will see the newtwork aspect betwen user and container.it will check netwrk 
-	  connection betwee user and contaienr how they are expose to external world.
-	
-	-cAdvisor : container run time environment. which container we are using example DOcker , Rocket.
-	
-	- pod: very imp. continer will run inside pod. it will create runtime env for container. provide layer of abstarction.
-	       as standard we will run 1 container per pod. we can run many.
-    
-	-kubectl : its a way of acesing the cluster. it is a command line tool.
 
  
