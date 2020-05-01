@@ -383,27 +383,29 @@ Deployment mainfest file.
 
 apiVersion: apps/v1
 kind: Deployment
-metadta:
-  name: nginix-deploy
-  label: 
-    app: nginix-app
-    
+metadata:
+  name: deployment-nginx-prod
+  labels:
+    deployapp: dev
 spec:
-  replica: 3
-  
+  replicas: 3
   selector:
-    matchLabels: nginix-app
-  
+    matchLabels:
+      podapp: dev
+
+
   template:
     metadata:
-       label:
-         app: niginix-app
+      name: nginx-pod-deploy
+      labels:
+        podapp: dev
+        podtier: prod
     spec:
-      container:
-      - name: nginix-container
-        image: nginix
-	port:
-	- containerPort: 80
+      containers:
+      - name: nginx-container-deploy
+        image: nginx
+        ports:
+        - containerPort: 80
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
