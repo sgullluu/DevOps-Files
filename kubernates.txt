@@ -496,20 +496,29 @@ Kubectl delete -g nginx-deploy.yaml
 
 
 
-
-
 ==================================================
 Horizontal scaling means that you scale by adding more machines
 into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM) to an existing machine.
 
 
-deployment object 
- scling up is esy
- exposing to external world is esy
- rolling updtae
- 
- service object
 ====================================================================================================================================
+
+Servicess
+
+
+why we need services
+
+Ip adress changes when pod dies
+communication between pods
+aplicatioon expose to external world
+
+
+Services is way of grouping of pods that are running on cluster.
+
+features
+- zero downtime app deployemnt
+- service dicovery between apps
+- load balancing
 
 
  
