@@ -542,11 +542,42 @@ it is 3 ipaddress and Port
 2) service ip and service port ( Node port service IP)
 3) target ip and target port ( Pod IP)
 
+Node port service can be access accross Nodes.
 
 Downside
 
 one service per Port 
- if vm ip changes u need to deal with that
+if vm ip changes u need to deal with that
  
+++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++
 
+#Service
+#service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodePortSrvc
+  labels:
+    svc: nodePort
+spec:
+  selector:
+    podapp: dev
+      
+  type: NodePort
+    
+  ports:
+  -  nodePort: 31000
+     port: 80     ( service port)
+     targetPort: 80  ( container port where app is running)
+     
+     
+ ======
+ Commands:
+ 
+ 
+ 
+     
+  
  
