@@ -521,4 +521,32 @@ features
 - load balancing
 
 
+#3 Types of Sevices
+
+1) Node Port service  :- used for port forwarding
+2) Load balancing service
+3) Cluster service :-it is reachable only inside the cluster, to connect frontend and backend pods. 
+
+
+
+
+Nord Pord Service:-
+
+node port is basically port forwarding of Pod application to node Ip and port.
+
+Node port range- 31000 to 32767
+
+it is 3 ipaddress and Port
+
+1) node ip and Node port
+2) service ip and service port ( Node port service IP)
+3) target ip and target port ( Pod IP)
+
+
+Downside
+
+one service per Port 
+ if vm ip changes u need to deal with that
+ 
+
  
