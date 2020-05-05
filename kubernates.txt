@@ -660,9 +660,124 @@ kubectl get pods
 
 *******************************************************************
  
+ Load balancer pending and cluster Ip is pendig
+ 
+ --------------------------------------------------------------------\
+ 
+ VOLUMES--------------
+ volume is just a directory with some data and is accesble to continer in pods.
+ 
+ different kind of Volume :-
+ 
+ ephemeral :-same life tym as pod
+ durable :- beyond pod lyf tym
  
  
+ Volume types
+ 1) Empty dir :- it will create an empty directory in Node where pod is schedule. container can read and write from this volume
+ .once the pod died this volume also dies.
+ 2) Host volume -- it is like docker volume . mount a fileor directory form host node's file system into your path.
+  dta remain after pod dies.
+  
+ another pod can created in same node and hostpath is present it will used the data.
  
+ kubernets create hostpath volume in each worker node where pod is crated and volume is not in sync.
+ 
+ 
+ -----------------------------
+ 
+ epmtydir:
+ 
+ apiVersion: v1
+ kind: Pod
+ metadata: 
+   name: emptydirPod
+ spec:
+   containers:
+   - images: k8s.gcr.io/test-webserver
+     name: emptydirContianer
+     volumeMounts:
+     - name: cache-volume
+       mountPath: /opt
+     
+   volumes:
+   - name: cache-volume
+     emptydir: {}
      
   
+  
+  =========================
+  
+  
+  1) kubectl create -f emptydir.yaml
+  2) kubectl get pods
+  3) kubectl exec emptydirPod df /opt
+  4) kubectl delete pod emptydirPod
+  
+  -----------------
+  hostpath
+  
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: hostPathPod
+  spec:
+    containers:
+    - name: redisConatiner
+      image: redis
+      volumeMounts:
+      - mountpath: /opt
+        name: hostpathVolume
+        
+      
+    volumes:
+    - name: hostpathVolume
+      hostPath:
+        path: /opt
+	
+# 2. Create and Display HostPath
+
+kubectl create -f nginx-hostpath.yaml
+kubectl get po
+kubectl exec nginx-hostpath df /test-mnt
+
+*******************************************************************
+3. Test: Creating "test" file underlying host dir & accessing from from pod
+
+From HOST:
+~~~~~~~~~~
+cd /test-vol
+echo "From Host" > from-host.txt
+cat from-host.txt
+
+From POD:
+~~~~~~~~
+kubectl exec nginx-hostpath cat /test-mnt/from-host.txt
+
+
+*******************************************************************
+4. Test: Creating "test" file inside the POD & accessing from underlying host dir
+
+From POD:
+~~~~~~~~~
+kubectl exec nginx-hostpath -it -- /bin/sh
+cd /test-mnt
+echo "From Pod" > from-pod.txt
+cat from-pod.txt
+
+From Host:
+~~~~~~~~~~
+cd /test-vol
+ls
+cat from-pod.txt
+
+
+*******************************************************************
+5. Clean up
+
+kubectl delete po nginx-hostpath
+kubectl get po
+ls /test-vol
+
+      
  
