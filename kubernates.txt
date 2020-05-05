@@ -739,7 +739,7 @@ kubectl get pods
 
 kubectl create -f nginx-hostpath.yaml
 kubectl get po
-kubectl exec nginx-hostpath df /test-mnt
+kubectl exec nginx-hostpath df /opt
 
 *******************************************************************
 3. Test: Creating "test" file underlying host dir & accessing from from pod
