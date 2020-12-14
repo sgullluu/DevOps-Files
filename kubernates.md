@@ -64,7 +64,7 @@ Flags
 -record : recird the command in history
 --replicas=5
 
-
+kubectl get pods --selector=app=ngnx-app
 ---------------------------------------------------------
 kubectl create -f pod.yml 
 Kubectl create -f < directoty name>
