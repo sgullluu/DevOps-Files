@@ -1,16 +1,15 @@
 
-KUBERNATES
-https://www.youtube.com/watch?v=6uvHVVNq34w&list=PLMPZQTftRCS8Pp4wiiUruly5ODScvAwcQ&index=18
 
-Kubernates architecture
+[Kubernates made easy tutorial](https://www.youtube.com/watch?v=6uvHVVNq34w&list=PLMPZQTftRCS8Pp4wiiUruly5ODScvAwcQ&index=18)
+
+** Kubernates Architecture**
 
 Kubernates master
  1)managing each operatiion and node. 
  2) checking each node is healthy , pod is healthy ,scheduling deployemnet of pod , controlling replicas.
   
  
- 
- -Master components:
+**Master components**
  
     -API server : API is used to make communication between two pod or two service in kubernates. to manage all this API's we 
      have API server . it will manage communication between different component of KUBERNATES.
@@ -167,6 +166,8 @@ Replication COntroller and Pods are assosciated with Labels
 Advantages :
  High availability
  Load balaancing
+ 
+ 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
  Mainfest file:-
