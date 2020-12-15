@@ -65,6 +65,8 @@ Flags
 --replicas=5
 
 kubectl get pods --selector=app=ngnx-app
+
+kubectl cluster-info
 ---------------------------------------------------------
 kubectl create -f pod.yml 
 Kubectl create -f < directoty name>
