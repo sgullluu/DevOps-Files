@@ -66,6 +66,19 @@ Flags
 
 kubectl get pods --selector=app=ngnx-app
 
+kubectl exec -it <podname> -- /bin/bash
+
+**BASE 64**
+
+ ** echo -n username | base64   **  
+
+
+**kubectl get all **
+
+**kubectl get all | grep mongo **
+
+**kubectl get endpoint **
+
 kubectl cluster-info
 ---------------------------------------------------------
 kubectl create -f pod.yml 
