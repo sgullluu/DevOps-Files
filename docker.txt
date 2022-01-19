@@ -12,8 +12,11 @@ Docker Insatallation
 3) docker --version
 4) docker images // docker images -a ( intermedite imge)
 5) docker run hello-world
-6) docker container ls / docker ps ( shows ony active conatner) / docker ps -a ( shows all continer)
-7) docker run --name firstcontainer hello-world.  ( --name flag)
+6) docker container ls 
+7) docker ps ( shows ony active conatner) / 
+8) docker ps -a ( shows all continer)
+9) docker run --name firstcontainer hello-world.  ( --name flag)
+10)docker ps --no-trunk ( commnads execute in dcoker file)
  
 -----------------------------------------------
 pushing and pulling images form docker hub
@@ -56,9 +59,15 @@ path :- var/lib/docker/volumes/..
 docker file commit and build
 
 27 docker commit ac34f863f078< continer id> sgulhane/automation:git2
-28 docker build -t dockerfile
+28 docker build -t <tag name> dockerfile
+   or 
+   docker build -t <tag nmae> -f dockerfile2 .
 
 docker history <image name>
+
+
+
+
 
 ------------------------------------------------------------------
 port forwarding
@@ -94,6 +103,82 @@ if we build 2 imgaes form same docker file with same image name, old image  will
 will get the name and tag of the image. old imge is called dangaling image nd just hnging around.
 
 docker images --filter "dangling=true"
+
+
+From command :
+The FROM instruction initializes a new build stage and sets the Base Image for subsequent instructions.
+As such, a valid Dockerfile must start with a FROM instruction. 
+
+Run Command:
+The RUN instruction will execute any commands in a new layer on top of the current image and commit the results. 
+The resulting committed image will be used for the next step in the Dockerfile.
+
+Run yum -y install httpd
+
+Copy
+
+
+ADD
+
+Entrypoint vs 
+
+Cmd 
+
+CMD apachectl -DFOREGROUND ( RUN Apache in foreground)
+
+expose command
+
+## Default document root for Apache is  /var/www/html
+
+## hosting static file in nginx :  /user/share/nginx/html
+
+From nginx:alpine
+Run echo "overide home page" > user/share/nginx/html/index.html
+
+
+#############################################
+#Dockerfile3
+
+From Centos-7
+ARG user=application
+ARG httpd_package
+
+RUN yum install -y $httpd_package unzip
+LABEL maintainer=Sourabh
+LABEL company=CTS
+
+ENV HTML somevalue
+
+WORKDIR /var/www/html
+
+ADD https://github/$HTML/archive/gh-pages.zip  ./code.zip
+
+RUN unzip code.zip && mv $HTML-gh-pages/* . && echo $HTML > ./echo.html
+
+RUN useradd $user && chown $user:$user /var/www/html -RUN
+
+USER $user
+
+RUN rm -rf code.zip
+
+USER root
+
+CMD apachectl -DFOREGROUND
+
+############################
+
+docker build -t sourabh/apache-test:v1 -f Dockerfile3 --build-arg user=sourabh --build-arg httpd_package=httpd .
+
+docker ignore  -- > like git ignore ( .dockerignore)
+
+docker rmi $(docker images -f dangling=true -q )  
+
+-f = filter 
+-q = image id
+
+
+
+#############################################
 
 -------------------------------------
 Registryy

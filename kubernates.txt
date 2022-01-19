@@ -11,10 +11,10 @@ Kubernates master
  
 **Master components**
  
-    -API server : API is used to make communication between two pod or two service in kubernates. to manage all this API's we 
+    -API server :  to manage all this API's we 
      have API server . it will manage communication between different component of KUBERNATES.
 
-     it isimp component in Kubernates cluster. it is front end component of Kubernates master. we define our cluster in yaml file.
+     it isimp component in Kubernates cluster.  we define our cluster in yaml file.
                     API server will validate that file and deploy continer to cluster.
 
     -etcd : It is a place where you store your password. it is store data in form of key value pair. 
@@ -120,56 +120,12 @@ kubectl log pod-name
 kubectl log -f pod-name
 
 ------------------------------------------
-PODS:-
-Continer inside pod share same IP address ,same volumes 
 
-all pods can communicate with each other
-
-Pod life cycle:-
-
-we write the mainfeast file and submit it to API server.
-it will create container using Mainfest file.
-it will be in pending state until all conatiners is created.
-once all conatiners are up and running it will go to running state.
-once its work its completed it go to successded state.
-if any failure happens it will go to failed state.
 
 Not ready and Unkown state.
 -----------------------------------------------
-Pod Config 
 
-#nginix-pod.yaml
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-  labels:
-    app: nginx-label
-    tier: dev
-spec:
-  containers:
-    - name: nginx-conatiner
-      image: nginx
-    
-    
-Command to excuete (youtube vdeio 21:00)
-
-1) kubectl create -f niginx-pod.ymal
-2) kubectl get pods
-3) kubectl get pod -o wide ( show wide output or more option like Ipaddress , nOde)
-4) kubectl get pod nginix-pod -o yaml  ( it will give detail in yaml format)
-kubectl get pod nginix-pod -o yaml | more
-  
-5) kubectl decribe pod nginix-pod ( detailed output of nginx pod
-6) kubectl exec -it pod nginix-pod -- /bin/bash ( get inside continer)
-
-run some commnds
-hostname
-exit
-7) kubectl expose pod nginix-pod --type=NodePort --port:80   ( Port forwarding)
-   
-8)kubectl delete pod nginix-pod
 ------------------------------------------
 
 Replication controller 
@@ -181,69 +137,7 @@ Replication COntroller and Pods are assosciated with Labels
 Advantages :
  High availability
  Load balaancing
- 
- 
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
- Mainfest file:-
- #niginx-rc.yaml
----
-apiVersion: v1
-kind: ReplicationController
-metadata:
-  name: nginx-contr
 
-spec:
-  replicas: 3
-  selector:
-    app: nginx-app
-  template:
-    metadata:
-      name: nginx-pod
-      labels:
-        app: nginx-app
-    spec:
-      containers:
-      - name: nginx-cont
-        image: nginx
-        ports:
-        - containerPort: 80
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-Command to excuete 	   
-1) kubectl create -f niginx-rc.ymal
-2) kubectl get pods
-3) kubectl get pod -l app:nginx-app  (search with label name)
- 
-4) kubectl decribe rc nginix-rc 
-5) kubectl get pod -o wide
-
-we can check one pod is running on node 2. we will manually turnoff the node 2 and check the status
-
-pod will go to not ready state.
-
-
-6) kubectl get nodes
-
-after some time again check the status wuth wide output option
-we will see that status of pod on node 2 become unkown ann new  pod is runnuing on Node 1
-
-Scale up and down
-
-7 kubectl scale  rc niginix-rd --replicas=5
-8 kubectl scale  rc niginix-rd --replicas=2
-
-kubectl get rc niginx-rd
-
-kubectl get pods
-
-DELETE
-
-kubectl delete -f nigin.rc.yaml
-
-kubectl get rc
-
-kubectl get pods
 
 -------------------------------------------------------------------------------------
 ReplicaSet
